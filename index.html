@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function fibs(number) {
+        if (num === 0) return [];
+        if (num === 1) return [0];
+
+        if (number >= 2) {
+          let array = [];
+
+          for (let i = 0; i < number; i++) {
+            if (i < 2) {
+              array.push(i);
+              continue;
+            }
+
+            array.push(array[i - 2] + array[i - 1]);
+          }
+
+          return array;
+        }
+      }
+
+      //   console.log(fibs(8));
+
+      function fibsRec(num) {
+        if (num === 0) return [];
+
+        if (num === 1) {
+          return [0];
+        }
+
+        if (num === 2) return [0, 1];
+
+        let prevFibs = fibsRec(num - 1);
+
+        let result =
+          prevFibs[prevFibs.length - 1] + prevFibs[prevFibs.length - 2];
+
+        prevFibs.push(result);
+
+        return prevFibs;
+      }
+
+      //   console.log(fibsRec(6));
+
+      let array1 = [5, 4, 10, 20, 300];
+      let array2 = [4, 2, 5, 3];
+
+      function merge(array1, array2) {
+        let k = []; // 4 2 5 4 5 3
+        let i = 0;
+        let j = 0;
+
+        while (array1[i] != undefined && array2[j] != undefined) {
+          if (array1[i] <= array2[j]) {
+            k.push(array1[i]);
+            i++;
+          } else if (array1[i] > array2[j]) {
+            k.push(array2[j]);
+            j++;
+          }
+        }
+
+        while (array1[i] !== undefined) {
+          k.push(array1[i]);
+          i++;
+        }
+
+        while (array2[j] !== undefined) {
+          k.push(array2[j]);
+          j++;
+        }
+
+        return k;
+      }
+
+      console.log(merge(array1, array2));
+
+      function mergeSort(array) {
+        if (array.length <= 1) return array;
+
+        let low = 0;
+        let high = array.length;
+        let middle = Math.floor(array.length / 2);
+
+        if (low < high) {
+          let left = mergeSort(array.slice(low, middle));
+          console.log(left);
+          let right = mergeSort(array.slice(middle, high));
+          console.log(right);
+          return merge(left, right);
+        }
+      }
+
+      let array = [3, 2, 1, 13, 8, 5, 0, 1];
+      console.log(array.slice(0, 4));
+      console.log(array.slice(4, 8));
+      console.log(mergeSort(array));
+    </script>
+  </body>
+</html>
