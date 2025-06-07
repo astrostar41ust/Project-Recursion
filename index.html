@@ -81,7 +81,7 @@
         return k;
       }
 
-      console.log(merge(array1, array2));
+      // console.log(merge(array1, array2));
 
       function mergeSort(array) {
         if (array.length <= 1) return array;
@@ -92,17 +92,34 @@
 
         if (low < high) {
           let left = mergeSort(array.slice(low, middle));
-          console.log(left);
+
           let right = mergeSort(array.slice(middle, high));
-          console.log(right);
+
           return merge(left, right);
         }
       }
 
       let array = [3, 2, 1, 13, 8, 5, 0, 1];
-      console.log(array.slice(0, 4));
-      console.log(array.slice(4, 8));
-      console.log(mergeSort(array));
+
+      // console.log(mergeSort(array));
+
+      let sortedArray = [1, 2, 3, 4, 5, 6, 7, 8];
+      function binarySearch(array, target) {
+        let mid = Math.floor(array.length / 2);
+        console.log(mid);
+        if (array.length <= 0) return "Not found";
+
+        if (array[mid] == target) return array[mid];
+
+        if (target < array[mid]) {
+          return binarySearch(array.slice(0, mid), target);
+        } else if (target > array[mid]) {
+          return binarySearch(array.slice(mid + 1), target);
+        }
+      }
+
+      // console.log(sortedArray.slice(0,4))
+      console.log(binarySearch(sortedArray, 4));
     </script>
   </body>
 </html>
